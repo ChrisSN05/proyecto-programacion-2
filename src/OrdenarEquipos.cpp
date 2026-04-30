@@ -2,13 +2,13 @@
 
 using namespace std;
 
-void OrdenadorEquipos::ordenarPorPrioridad(vector<Equipo*>& equipos) {
+void OrdenadorEquipos::ordenarPorPrioridad(vector<Equipo *> &equipos) {
     if (!equipos.empty()) {
         ordenarPorPrioridadRecursivo(equipos, 0, static_cast<int>(equipos.size()) - 1);
     }
 }
 
-void OrdenadorEquipos::ordenarPorPrioridadRecursivo(vector<Equipo*>& equipos, int izquierda, int derecha) {
+void OrdenadorEquipos::ordenarPorPrioridadRecursivo(vector<Equipo *> &equipos, int izquierda, int derecha) {
     if (izquierda >= derecha) {
         return;
     }
@@ -20,8 +20,8 @@ void OrdenadorEquipos::ordenarPorPrioridadRecursivo(vector<Equipo*>& equipos, in
     mezclarPorPrioridad(equipos, izquierda, medio, derecha);
 }
 
-void OrdenadorEquipos::mezclarPorPrioridad(vector<Equipo*>& equipos, int izquierda, int medio, int derecha) {
-    vector<Equipo*> temporal;
+void OrdenadorEquipos::mezclarPorPrioridad(vector<Equipo *> &equipos, int izquierda, int medio, int derecha) {
+    vector<Equipo *> temporal;
 
     int i = izquierda;
     int j = medio + 1;
@@ -51,13 +51,13 @@ void OrdenadorEquipos::mezclarPorPrioridad(vector<Equipo*>& equipos, int izquier
     }
 }
 
-void OrdenadorEquipos::ordenarPorCodigo(vector<Equipo*>& equipos) {
+void OrdenadorEquipos::ordenarPorCodigo(vector<Equipo *> &equipos) {
     if (!equipos.empty()) {
         ordenarPorCodigoRecursivo(equipos, 0, static_cast<int>(equipos.size()) - 1);
     }
 }
 
-void OrdenadorEquipos::ordenarPorCodigoRecursivo(vector<Equipo*>& equipos, int izquierda, int derecha) {
+void OrdenadorEquipos::ordenarPorCodigoRecursivo(vector<Equipo *> &equipos, int izquierda, int derecha) {
     if (izquierda >= derecha) {
         return;
     }
@@ -69,8 +69,8 @@ void OrdenadorEquipos::ordenarPorCodigoRecursivo(vector<Equipo*>& equipos, int i
     mezclarPorCodigo(equipos, izquierda, medio, derecha);
 }
 
-void OrdenadorEquipos::mezclarPorCodigo(vector<Equipo*>& equipos, int izquierda, int medio, int derecha) {
-    vector<Equipo*> temporal;
+void OrdenadorEquipos::mezclarPorCodigo(vector<Equipo *> &equipos, int izquierda, int medio, int derecha) {
+    vector<Equipo *> temporal;
 
     int i = izquierda;
     int j = medio + 1;
