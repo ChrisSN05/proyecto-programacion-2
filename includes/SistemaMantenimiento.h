@@ -4,7 +4,7 @@
 
 #include "Equipo.h"
 #include "Incidencia.h"
-#include "CargadorDatos.h"
+#include "CargarDatos.h"
 #include "GeneradorDatosPrueba.h"
 #include <memory>
 #include <string>
@@ -15,7 +15,7 @@ private:
     std::vector<std::unique_ptr<Equipo> > equipos;
     std::vector<std::unique_ptr<Incidencia> > incidencias;
 
-    CargadorDatos cargadorDatos;
+    CargarDatos cargarDatos;
     GeneradorDatosPrueba generadorDatosPrueba;
 
     bool existeEquipo(const std::string &codigo) const;
