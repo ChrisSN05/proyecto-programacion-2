@@ -14,7 +14,7 @@ private:
     int criticidad;
     int estado;
     int tiempoInactivo;
-    int diasSinAtencion;
+    int ultimoDiaAtencion;
     double prioridad;
     std::vector<Incidencia *> incidencias;
 

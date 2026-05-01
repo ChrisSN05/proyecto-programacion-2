@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-class CargadorDatos {
+class CargarDatos {
 private:
     std::vector<std::string> separar(const std::string &linea, char separador) const;
 

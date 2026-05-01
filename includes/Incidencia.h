@@ -11,7 +11,7 @@ class Incidencia {
 private:
     std::string codigo;
     std::string descripcion;
-    Severidad severidad;
+    std::string severidad;
     int diaRegistro;
     bool activa;
     bool cerrada;
