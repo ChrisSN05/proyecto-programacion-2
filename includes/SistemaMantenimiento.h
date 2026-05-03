@@ -20,11 +20,15 @@ private:
 
     bool existeEquipo(const std::string &codigo) const;
 
+    bool existenArchivosBase() const;
+
     void validarCodigoNoVacio(const std::string &codigo) const;
 
     void validarRango(const std::string &campo, int valor, int minimo, int maximo) const;
 
 public:
+    void inicializarSistema();
+
     void generarDatosPrueba();
 
     void cargarDatosDesdeArchivos();

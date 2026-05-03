@@ -6,6 +6,18 @@
 
 using namespace std;
 
+#ifndef PROJECT_ROOT
+#define PROJECT_ROOT "."
+#endif
+
+static string rutaReporteDiario(int dia) {
+    return string(PROJECT_ROOT) + "/Reportes/reporte_dia_" + to_string(dia) + ".txt";
+}
+
+static string rutaReporteFinal() {
+    return string(PROJECT_ROOT) + "/Reportes/reporte_final.txt";
+}
+
 int GeneradorReporte::calcularBacklogPendiente(const vector<Equipo *> &equipos) const {
     int total = 0;
 
@@ -43,9 +55,9 @@ string GeneradorReporte::calcularRiesgoGlobal(const vector<Equipo *> &equipos) c
 void GeneradorReporte::generarReporteDiario(int dia,
                                             const vector<Equipo *> &equiposOrdenados,
                                             const vector<Equipo *> &equiposAtendidos) const {
-    filesystem::create_directories("Reportes");
+    filesystem::create_directories(string(PROJECT_ROOT) + "/Reportes");
 
-    string ruta = "Reportes/reporte_dia_" + to_string(dia) + ".txt";
+    string ruta = rutaReporteDiario(dia);
     ofstream archivo(ruta);
 
     if (!archivo.is_open()) {
@@ -62,6 +74,7 @@ void GeneradorReporte::generarReporteDiario(int dia,
 
     archivo << endl;
     archivo << "Top prioridad: ";
+
     for (int i = 0; i < 3 && i < static_cast<int>(equiposOrdenados.size()); i++) {
         archivo << equiposOrdenados[i]->obtenerCodigo()
                 << " (" << equiposOrdenados[i]->obtenerPrioridad() << ")";
@@ -74,6 +87,7 @@ void GeneradorReporte::generarReporteDiario(int dia,
     archivo << endl;
 
     archivo << "Equipos atendidos: ";
+
     for (int i = 0; i < static_cast<int>(equiposAtendidos.size()); i++) {
         archivo << equiposAtendidos[i]->obtenerCodigo();
 
@@ -132,9 +146,9 @@ void GeneradorReporte::generarReporteDiario(int dia,
 }
 
 void GeneradorReporte::generarReporteFinal(const vector<Equipo *> &equiposOrdenados) const {
-    filesystem::create_directories("Reportes");
+    filesystem::create_directories(string(PROJECT_ROOT) + "/Reportes");
 
-    string ruta = "Reportes/reporte_final.txt";
+    string ruta = rutaReporteFinal();
     ofstream archivo(ruta);
 
     if (!archivo.is_open()) {

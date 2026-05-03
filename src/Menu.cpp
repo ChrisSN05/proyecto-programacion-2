@@ -42,7 +42,7 @@ string Menu::leerTexto(const string &mensaje) const {
 void Menu::mostrarOpciones() const {
     cout << endl;
     cout << "===== Sistema de Planificacion Inteligente de Mantenimiento =====" << endl;
-    cout << "1. Generar datos de prueba" << endl;
+    cout << "1. Regenerar datos de prueba" << endl;
     cout << "2. Cargar datos desde archivos" << endl;
     cout << "3. Registrar equipo manualmente" << endl;
     cout << "4. Registrar incidencia manualmente" << endl;
@@ -83,6 +83,12 @@ void Menu::registrarIncidencia() {
 void Menu::ejecutar() {
     int opcion;
 
+    try {
+        sistema.inicializarSistema();
+        cout << "Datos iniciales cargados correctamente" << endl;
+    } catch (const exception &error) {
+        cout << "Error al inicializar datos: " << error.what() << endl;
+    }
     do {
         mostrarOpciones();
         opcion = leerEntero("Seleccione una opcion: ", 1, 7);
@@ -91,7 +97,7 @@ void Menu::ejecutar() {
             switch (opcion) {
                 case 1:
                     sistema.generarDatosPrueba();
-                    cout << "Datos de prueba generados correctamente" << endl;
+                    cout << "Datos de prueba regenerados y cargados correctamente" << endl;
                     break;
 
                 case 2:

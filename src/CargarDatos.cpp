@@ -22,7 +22,7 @@ vector<string> CargarDatos::separar(const string &linea, char separador) const {
     return partes;
 }
 
-string CargrDatos::limpiarEspacios(const string &texto) const {
+string CargarDatos::limpiarEspacios(const string &texto) const {
     int inicio = 0;
     int fin = static_cast<int>(texto.size()) - 1;
 
@@ -41,7 +41,7 @@ string CargrDatos::limpiarEspacios(const string &texto) const {
     return texto.substr(inicio, fin - inicio + 1);
 }
 
-int CargrDatos::convertirEntero(const string &texto, const string &campo, int numeroLinea) const {
+int CargarDatos::convertirEntero(const string &texto, const string &campo, int numeroLinea) const {
     try {
         size_t posicion = 0;
         int valor = stoi(texto, &posicion);
@@ -60,7 +60,7 @@ int CargrDatos::convertirEntero(const string &texto, const string &campo, int nu
     }
 }
 
-void CargrDatos::validarEquipo(const vector<string> &partes, int numeroLinea) const {
+void CargarDatos::validarEquipo(const vector<string> &partes, int numeroLinea) const {
     if (partes.size() != 5) {
         throw FormatoInvalidoException("Formato invalido de equipo en la linea " + to_string(numeroLinea));
     }
@@ -74,7 +74,7 @@ void CargrDatos::validarEquipo(const vector<string> &partes, int numeroLinea) co
     }
 }
 
-void CargrDatos::validarIncidencia(const vector<string> &partes, int numeroLinea) const {
+void CargarDatos::validarIncidencia(const vector<string> &partes, int numeroLinea) const {
     if (partes.size() != 4) {
         throw FormatoInvalidoException("Formato invalido de incidencia en la linea " + to_string(numeroLinea));
     }
@@ -88,7 +88,7 @@ void CargrDatos::validarIncidencia(const vector<string> &partes, int numeroLinea
     }
 }
 
-bool CargrDatos::existeEquipo(const vector<unique_ptr<Equipo> > &equipos, const string &codigo) const {
+bool CargarDatos::existeEquipo(const vector<unique_ptr<Equipo> > &equipos, const string &codigo) const {
     for (const auto &equipo: equipos) {
         if (equipo->obtenerCodigo() == codigo) {
             return true;
@@ -98,8 +98,8 @@ bool CargrDatos::existeEquipo(const vector<unique_ptr<Equipo> > &equipos, const 
     return false;
 }
 
-void CargrDatos::cargarEquipos(const string &ruta,
-                               vector<unique_ptr<Equipo> > &equipos) const {
+void CargarDatos::cargarEquipos(const string &ruta,
+                                vector<unique_ptr<Equipo> > &equipos) const {
     ifstream archivo(ruta);
 
     if (!archivo.is_open()) {
@@ -154,9 +154,9 @@ void CargrDatos::cargarEquipos(const string &ruta,
     }
 }
 
-void CargrDatos::cargarIncidencias(const string &ruta,
-                                   const vector<unique_ptr<Equipo> > &equipos,
-                                   vector<unique_ptr<Incidencia> > &incidencias) const {
+void CargarDatos::cargarIncidencias(const string &ruta,
+                                    const vector<unique_ptr<Equipo> > &equipos,
+                                    vector<unique_ptr<Incidencia> > &incidencias) const {
     ifstream archivo(ruta);
 
     if (!archivo.is_open()) {

@@ -3,7 +3,8 @@ project(proyecto_programacion_2)
 
 set(CMAKE_CXX_STANDARD 26)
 
-add_executable(proyecto_programacion_2 main.cpp
+add_executable(proyecto_programacion_2
+
         includes/Equipo.h
         includes/EquipoComputo.h
         includes/EquipoLaboratorio.h
@@ -21,6 +22,8 @@ add_executable(proyecto_programacion_2 main.cpp
         includes/GeneradorReporte.h
         includes/SistemaMantenimiento.h
         includes/Menu.h
+
+
         src/Equipo.cpp
         src/EquipoComputo.cpp
         src/EquipoLaboratorio.cpp
@@ -35,8 +38,18 @@ add_executable(proyecto_programacion_2 main.cpp
         src/SistemaMantenimiento.cpp
         src/Menu.cpp
         src/Incidencia.cpp
+
+        
         main.cpp
 
 )
 
 target_include_directories(proyecto_programacion_2 PRIVATE includes)
+
+target_compile_definitions(proyecto_programacion_2 PRIVATE
+        PROJECT_ROOT="${CMAKE_CURRENT_SOURCE_DIR}"
+)
+
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Archivos)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Reportes)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Documentacion)

@@ -5,8 +5,18 @@
 #include "Simulador.h"
 #include "OperacionInconsistenteException.h"
 #include "FormatoInvalidoException.h"
+#include <filesystem>
 
 using namespace std;
+
+
+static string rutaEquipos() {
+    return string(PROJECT_ROOT) + "/Archivos/equipos.txt";
+}
+
+static string rutaIncidencias() {
+    return string(PROJECT_ROOT) + "/Archivos/incidencias.txt";
+}
 
 bool SistemaMantenimiento::existeEquipo(const string &codigo) const {
     for (const auto &equipo: equipos) {
@@ -31,13 +41,31 @@ void SistemaMantenimiento::validarRango(const string &campo, int valor, int mini
     }
 }
 
+bool SistemaMantenimiento::existenArchivosBase() const {
+    return filesystem::exists(rutaEquipos()) &&
+           filesystem::exists(rutaIncidencias());
+}
+
+void SistemaMantenimiento::inicializarSistema() {
+    filesystem::create_directories(string(PROJECT_ROOT) + "/Archivos");
+    filesystem::create_directories(string(PROJECT_ROOT) + "/Reportes");
+    filesystem::create_directories(string(PROJECT_ROOT) + "/Documentacion");;
+
+    if (!existenArchivosBase()) {
+        generadorDatosPrueba.generar(rutaEquipos(), rutaIncidencias());
+    }
+
+    cargarDatosDesdeArchivos();
+}
+
 void SistemaMantenimiento::generarDatosPrueba() {
-    generadorDatosPrueba.generar("Archivos/equipos.txt", "Archivos/incidencias.txt");
+    generadorDatosPrueba.generar(rutaEquipos(), rutaIncidencias());
+    cargarDatosDesdeArchivos();
 }
 
 void SistemaMantenimiento::cargarDatosDesdeArchivos() {
-    cargadorDatos.cargarEquipos("Archivos/equipos.txt", equipos);
-    cargadorDatos.cargarIncidencias("Archivos/incidencias.txt", equipos, incidencias);
+    cargarDatos.cargarEquipos(rutaEquipos(), equipos);
+    cargarDatos.cargarIncidencias(rutaIncidencias(), equipos, incidencias);
 }
 
 void SistemaMantenimiento::registrarEquipoManual(const string &tipo,

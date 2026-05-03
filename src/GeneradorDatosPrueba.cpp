@@ -21,7 +21,8 @@ string GeneradorDatosPrueba::formatearCodigoIncidencia(int numero) const {
 
 void GeneradorDatosPrueba::generar(const string &rutaEquipos,
                                    const string &rutaIncidencias) const {
-    filesystem::create_directories("Archivos");
+    filesystem::create_directories(filesystem::path(rutaEquipos).parent_path());
+    filesystem::create_directories(filesystem::path(rutaIncidencias).parent_path());
 
     ofstream archivoEquipos(rutaEquipos);
     ofstream archivoIncidencias(rutaIncidencias);

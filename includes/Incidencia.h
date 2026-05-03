@@ -10,7 +10,7 @@ class Equipo;
 class Incidencia {
 private:
     std::string codigo;
-    std::string descripcion;
+    std::string codigoEquipo;
     std::string severidad;
     int diaRegistro;
     bool activa;
@@ -19,7 +19,7 @@ private:
 
 public:
     Incidencia(const std::string &codigo,
-               const std::string &descripcion,
+               const std::string &codigoEquipo,
                const std::string &severidad,
                int diaRegistro);
 
